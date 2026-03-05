@@ -1,0 +1,64 @@
+name: GitHub Metrics
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Generate metrics
+        uses: gh-metrics/metrics@master
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: codex-coderex
+          filename: github-metrics.svg
+
+          template: classic
+          base: header, activity, community, repositories, metadata
+
+          config_timezone: Asia/Manila
+
+          # Languages
+          plugin_languages: yes
+          plugin_languages_indepth: yes
+          plugin_languages_limit: 8
+          plugin_languages_sections: most-used
+
+          # Coding habits
+          plugin_habits: yes
+          plugin_habits_days: 30
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          plugin_habits_charts_type: classic
+
+          # Isometric contribution calendar
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year
+
+          # Code statistics
+          plugin_lines: yes
+
+          # Technologies used
+          plugin_topics: yes
+          plugin_topics_limit: 24
+          plugin_topics_mode: icons
+
+          # Achievements
+          plugin_achievements: yes
+          plugin_achievements_display: compact
+          plugin_achievements_limit: 6
+
+          # Repository stars
+          plugin_stars: yes
+          plugin_stars_limit: 3
+
+          # Response behavior
+          plugin_followup: yes
+          plugin_followup_sections: user
