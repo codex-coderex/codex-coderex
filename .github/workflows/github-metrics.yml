@@ -1,4 +1,4 @@
-name: GitHub Metrics
+name: Metrics embed
 
 on:
   schedule:
