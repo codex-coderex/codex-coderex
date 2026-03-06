@@ -14,12 +14,13 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Generate metrics
+
+      - name: Generate left metrics
         uses: stalomeow/metrics@projects-v2
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: codex-coderex
-          filename: github-metrics.svg
+          filename: github-metrics-left.svg
           template: classic
           base: header, activity, community, repositories, metadata
           config_timezone: Asia/Manila
@@ -30,13 +31,6 @@ jobs:
           plugin_languages_limit: 8
           plugin_languages_sections: most-used
 
-          # Coding habits
-          plugin_habits: yes
-          plugin_habits_days: 30
-          plugin_habits_facts: yes
-          plugin_habits_charts: yes
-          plugin_habits_charts_type: classic
-
           # Isometric contribution calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
@@ -44,15 +38,32 @@ jobs:
           # Code statistics
           plugin_lines: yes
 
-          # Technologies used
-          plugin_topics: yes
-          plugin_topics_limit: 24
-          plugin_topics_mode: icons
-
           # Achievements
           plugin_achievements: yes
           plugin_achievements_display: compact
           plugin_achievements_limit: 6
+
+      - name: Generate right metrics
+        uses: stalomeow/metrics@projects-v2
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: codex-coderex
+          filename: github-metrics-right.svg
+          template: classic
+          base: ""
+          config_timezone: Asia/Manila
+
+          # Coding habits
+          plugin_habits: yes
+          plugin_habits_days: 30
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          plugin_habits_charts_type: classic
+
+          # Technologies used
+          plugin_topics: yes
+          plugin_topics_limit: 24
+          plugin_topics_mode: icons
 
           # Repository stars
           plugin_stars: yes
