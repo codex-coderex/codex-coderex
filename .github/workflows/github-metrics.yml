@@ -16,7 +16,7 @@ jobs:
     steps:
 
       - name: Generate left metrics
-        uses: stalomeow/metrics@projects-v2
+        uses: wesleyscholl/metrics@v1.4
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: codex-coderex
@@ -44,7 +44,7 @@ jobs:
           plugin_achievements_limit: 6
 
       - name: Generate right metrics
-        uses: stalomeow/metrics@projects-v2
+        uses: wesleyscholl/metrics@v1.4
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: codex-coderex
